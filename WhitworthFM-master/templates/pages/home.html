@@ -1,0 +1,157 @@
+<div class="page">
+    <div class="player auto-size">
+        <div class="container flex flex-column">
+            <div class="title row-fluid">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="status">
+                        <img class="hidden-xs" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIEZpcmV3b3JrcyAxMCwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DQo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPg0KPHN2ZyBpZD0iVW50aXRsZWQtUGFnZSUyMDEiIHZpZXdCb3g9IjAgMCAxOCAyMiIgc3R5bGU9ImJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjAwIiB2ZXJzaW9uPSIxLjEiDQoJeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSINCgl4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjE4cHgiIGhlaWdodD0iMjJweCINCj4NCgk8ZyBpZD0iTGF5ZXIlMjAxIj4NCgkJPHBhdGggZD0iTSAwIDAgTCAxOCAxMS4xNjY3IEwgMCAyMiBMIDAgMCBaIiBmaWxsPSIjNDQ0NDQ0Ii8+DQoJPC9nPg0KPC9zdmc+"/>
+                        <h2 id="now-playing" class="playing hidden-xs">Now Playing</h2>
+                    </div>
+                    <div class="volume-container">
+                        <div class="volume" ui-slider min="0" max="100" ng-model="homeVolume"></div>
+                        <span title="Toggle Mute" ng-click="toggleMuteHome()" class="glyphicon {{homeVolume > 0 ? ' glyphicon-volume-up' : 'glyphicon-volume-off'}}"></span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="show">
+                        <img src="./img/WMProfile.png"/>
+                        <div>
+                            <h2>{{currentShow.title || 'Whitworth FM'}}</h2>
+                            <h4>{{currentShow.hosts || 'Automation'}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="!streamLoaded" class="song flex flex-one center">
+                <div class="spinner">
+                    <div class="rect1"></div>
+                    <div class="rect2"></div>
+                    <div class="rect3"></div>
+                    <div class="rect4"></div>
+                    <div class="rect5"></div>
+                </div>
+            </div>
+            <div ng-show="streamLoaded" class="song flex flex-one center-vertical row-fluid">
+                <div class="col-md-6 col-xs-6 relative">
+                    <img class="album-art" src="{{currentSong.album.images[1].url || './img/album-error.png'}}"/>
+                    <a ng-show="isItunes" class="itunes" href="{{currentSong.album.url}}" target="_blank">
+                        <img class="small" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjMsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iNjcuNzE5cHgiIGhlaWdodD0iMjQuNjI1cHgiIHZpZXdCb3g9IjQyLjI4MSAxNS4zNzUgNjcuNzE5IDI0LjYyNSIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyA0Mi4yODEgMTUuMzc1IDY3LjcxOSAyNC42MjUiDQoJIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggZmlsbD0iI0E2QTZBNiIgZD0iTTEwNy4wODgsNDBINDUuMTkyYy0xLjYwNSwwLTIuOTEyLTEuMzA0LTIuOTEyLTIuOTA3VjE4LjI4NWMwLTEuNjA0LDEuMzA3LTIuOTEsMi45MTItMi45MWg2MS44OTYNCgljMS42MDMsMCwyLjkxMSwxLjMwNSwyLjkxMSwyLjkxdjE4LjgwOEMxMDkuOTk4LDM4LjY5NiwxMDguNjkxLDQwLDEwNy4wODgsNDBMMTA3LjA4OCw0MHoiLz4NCjxwYXRoIGQ9Ik0xMDkuNDQ3LDM3LjA5M2MwLDEuMzA0LTEuMDU0LDIuMzU3LTIuMzU5LDIuMzU3SDQ1LjE5MmMtMS4zMDUsMC0yLjM2My0xLjA1NC0yLjM2My0yLjM1N1YxOC4yODUNCgljMC0xLjMwMywxLjA1OS0yLjM2MiwyLjM2My0yLjM2Mmg2MS44OTZjMS4zMDYsMCwyLjM1OSwxLjA1OSwyLjM1OSwyLjM2MlYzNy4wOTN6Ii8+DQo8bGluZWFyR3JhZGllbnQgaWQ9IlNWR0lEXzFfIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9Ii00NzAuOTIxOSIgeTE9Ijg0NS4wNjg0IiB4Mj0iLTQ3MC45MjE5IiB5Mj0iODIyLjg3MSIgZ3JhZGllbnRUcmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAxIDU2NCAtODA1KSI+DQoJPHN0b3AgIG9mZnNldD0iMCIgc3R5bGU9InN0b3AtY29sb3I6IzFBMUExQTtzdG9wLW9wYWNpdHk6MC4xIi8+DQoJPHN0b3AgIG9mZnNldD0iMC4xMjM1IiBzdHlsZT0ic3RvcC1jb2xvcjojMjEyMTIxO3N0b3Atb3BhY2l0eTowLjE1MDYiLz4NCgk8c3RvcCAgb2Zmc2V0PSIwLjMwODUiIHN0eWxlPSJzdG9wLWNvbG9yOiMzNTM1MzU7c3RvcC1vcGFjaXR5OjAuMjI2NSIvPg0KCTxzdG9wICBvZmZzZXQ9IjAuNTMyMSIgc3R5bGU9InN0b3AtY29sb3I6IzU3NTc1NztzdG9wLW9wYWNpdHk6MC4zMTgxIi8+DQoJPHN0b3AgIG9mZnNldD0iMC43ODM0IiBzdHlsZT0ic3RvcC1jb2xvcjojODU4NTg1O3N0b3Atb3BhY2l0eTowLjQyMTIiLz4NCgk8c3RvcCAgb2Zmc2V0PSIxIiBzdHlsZT0ic3RvcC1jb2xvcjojQjNCM0IzO3N0b3Atb3BhY2l0eTowLjUxIi8+DQo8L2xpbmVhckdyYWRpZW50Pg0KPHBhdGggZmlsbD0idXJsKCNTVkdJRF8xXykiIGQ9Ik0xMDcuMDg4LDE1LjM3NUg3Ni4xNTZMOTIuMzYxLDQwaDE0LjcyN2MxLjYwMywwLDIuOTExLTEuMzA0LDIuOTExLTIuOTA3VjE4LjI4NQ0KCUMxMTAsMTYuNjgxLDEwOC42OTEsMTUuMzc1LDEwNy4wODgsMTUuMzc1eiIvPg0KPGc+DQoJPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTUyLjE5LDIxLjk4MWMwLDAuMzgyLTAuMTI1LDAuNjktMC4zNzUsMC45MjljLTAuMjUsMC4yMzYtMC41NzIsMC4zNTQtMC45NjgsMC4zNTQNCgkJYy0wLjM1NSwwLTAuNjU0LTAuMTIxLTAuODk4LTAuMzY1Yy0wLjI0My0wLjI0My0wLjM2NS0wLjU0OS0wLjM2NS0wLjkxOGMwLTAuMzY4LDAuMTI1LTAuNjcxLDAuMzc1LTAuOTA4DQoJCWMwLjI1LTAuMjM2LDAuNTYtMC4zNTUsMC45MjktMC4zNTVjMC4zNjgsMCwwLjY3OCwwLjExOSwwLjkyOCwwLjM1NUM1Mi4wNjUsMjEuMzExLDUyLjE5LDIxLjYxMiw1Mi4xOSwyMS45ODF6IE01MS45NTMsMzQuNDQNCgkJaC0yLjEzMnYtOS41OTZoMi4xMzJWMzQuNDR6Ii8+DQoJPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTYzLjQ2NSwyMi45MjloLTMuODMyVjM0LjQ0SDU3LjVWMjIuOTI5aC0zLjc5MXYtMS43OTdoOS43NTN2MS43OTdINjMuNDY1eiIvPg0KCTxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik03Mi4zMTEsMzQuNDRoLTEuODc1bC0wLjExOS0xLjQ2MWgtMC4wMzljLTAuNjcyLDEuMTE5LTEuNjg2LDEuNjc4LTMuMDQxLDEuNjc4DQoJCWMtMC45NDcsMC0xLjcwNS0wLjI5Ni0yLjI3MS0wLjg4OGMtMC42Ny0wLjcyNi0xLjAwNi0xLjgxNi0xLjAwNi0zLjI3OHYtNS42NDZoMi4xMzN2NS4yOTFjMCwxLjg0NiwwLjYzMSwyLjc2NywxLjg5NiwyLjc2Nw0KCQljMC45NDUsMCwxLjYwNC0wLjQ2MSwxLjk3Ny0xLjM4MmMwLjA5Mi0wLjIzNywwLjEzOS0wLjUwOCwwLjEzOS0wLjgxMXYtNS44NjVoMi4xMzN2Ni44MzINCgkJQzcyLjIzMiwzMi41ODMsNzIuMjU4LDMzLjUwNSw3Mi4zMTEsMzQuNDR6Ii8+DQoJPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTgzLjU2NCwzNC40NGgtMi4xMzN2LTUuNTA5YzAtMS42OTgtMC42NDYtMi41NDgtMS45MzgtMi41NDhjLTAuNjMxLDAtMS4xNDYsMC4yMzItMS41MzksMC43MDENCgkJYy0wLjM5NSwwLjQ2Ny0wLjU5MiwxLjAxOC0wLjU5MiwxLjY0N3Y1LjcwNkg3NS4yM3YtNi44NTRjMC0wLjg0Mi0wLjAyNy0xLjc1Ni0wLjA4LTIuNzQ0aDEuODc3bDAuMSwxLjQ4aDAuMDYxDQoJCWMwLjI1LTAuNDYsMC42MTctMC44NDIsMS4xMDUtMS4xNDVjMC41NzYtMC4zNTUsMS4yMjMtMC41MzMsMS45MzQtMC41MzNjMC44OTYsMCwxLjYzOSwwLjI4OSwyLjIzMiwwLjg2Nw0KCQljMC43MzQsMC43MTEsMS4xMDQsMS43NzEsMS4xMDQsMy4xOEw4My41NjQsMzQuNDRMODMuNTY0LDM0LjQ0eiIvPg0KCTxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik05NC40MjQsMjkuMTg4YzAsMC4zODItMC4wMjYsMC43MDQtMC4wOCwwLjk2OGgtNi4zOTZjMC4wMjQsMC45NDcsMC4zMzYsMS42NzIsMC45MjksMi4xNzINCgkJYzAuNTM4LDAuNDQ3LDEuMjM3LDAuNjcxLDIuMDk0LDAuNjcxYzAuOTQ3LDAsMS44MS0wLjE0OSwyLjU4Ni0wLjQ1M2wwLjMzNiwxLjQ3OWMtMC45MDcsMC4zOTYtMS45ODEsMC41OTMtMy4yMTksMC41OTMNCgkJYy0xLjQ4OCwwLTIuNjU2LTAuNDM4LTMuNTA0LTEuMzEyYy0wLjg1MS0wLjg3NS0xLjI3Mi0yLjA1Mi0xLjI3Mi0zLjUyM2MwLTEuNDQ2LDAuMzk2LTIuNjUxLDEuMTg0LTMuNjEyDQoJCWMwLjgzLTEuMDI2LDEuOTQ5LTEuNTM5LDMuMzU3LTEuNTM5YzEuMzgxLDAsMi40MjgsMC41MTMsMy4xMzksMS41MzlDOTQuMTQxLDI2Ljk4Myw5NC40MjQsMjcuOTksOTQuNDI0LDI5LjE4OHogTTkyLjM5MSwyOC42MzYNCgkJYzAuMDEyLTAuNjMzLTAuMTI3LTEuMTc4LTAuNDE2LTEuNjM5Yy0wLjM2Ny0wLjU5NS0wLjkzNS0wLjg5MS0xLjY5Ny0wLjg5MWMtMC42OTcsMC0xLjI2NCwwLjI5LTEuNjk3LDAuODY5DQoJCWMtMC4zNTUsMC40Ni0wLjU2NiwxLjAxNC0wLjYzMywxLjY1Nmg0LjQ0M1YyOC42MzZ6Ii8+DQoJPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTEwMi42OTYsMzEuNjc1YzAsMC44OTYtMC4zMywxLjYxMi0wLjk4NywyLjE1MWMtMC42NTgsMC41NC0xLjU2NSwwLjgxMi0yLjcyNiwwLjgxMg0KCQljLTEuMDkzLDAtMi4wMjEtMC4yMTctMi43ODMtMC42NTFsMC40NTMtMS41NzljMC43MzcsMC40NDcsMS41MjEsMC42NzEsMi4zNTEsMC42NzFjMS4wOTIsMCwxLjY0LTAuNDAxLDEuNjQtMS4yMDQNCgkJYzAtMC4zNTQtMC4xMTctMC42NDYtMC4zNTUtMC44NzljLTAuMjM1LTAuMjI5LTAuNjU3LTAuNDU3LTEuMjY0LTAuNjgyYy0xLjcxMS0wLjYzMi0yLjU2NS0xLjU1My0yLjU2NS0yLjc2NA0KCQljMC0wLjgzLDAuMzE1LTEuNTIxLDAuOTQ2LTIuMDczYzAuNjMzLTAuNTU0LDEuNDY5LTAuODI5LDIuNTA4LTAuODI5YzAuOTQ3LDAsMS43NTksMC4xODksMi40MzEsMC41NzJsLTAuNDU1LDEuNTIxDQoJCWMtMC42MTktMC4zNjgtMS4yNzEtMC41NTMtMS45NTUtMC41NTNjLTAuNDQ2LDAtMC43OTcsMC4xMDQtMS4wNDUsMC4zMTVjLTAuMjUyLDAuMjExLTAuMzc3LDAuNDc5LTAuMzc3LDAuODENCgkJczAuMTMzLDAuNjAxLDAuMzk2LDAuODFjMC4yMjQsMC4xOTcsMC42NTgsMC40MTYsMS4zMDQsMC42NTFDMTAxLjg2NiwyOS40MDQsMTAyLjY5NiwzMC4zNzIsMTAyLjY5NiwzMS42NzV6Ii8+DQo8L2c+DQo8L3N2Zz4NCg==" />
+                    </a>
+                </div>
+                <div class="col-md-6 col-xs-6">
+                    <h2>{{currentSong.artist}}</h2>
+                    <h1>{{currentSong.title}}</h1>
+                    <h4>{{currentSong.album.name}}</h4>
+                </div>
+            </div>
+            <div class="down">
+                <a ng-click="scrollToId('announce')">
+                    <img id="announce" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIEZpcmV3b3JrcyAxMCwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DQo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPg0KPHN2ZyBpZD0iVW50aXRsZWQtUGFnZSUyMDEiIHZpZXdCb3g9IjAgMCA2MCA2MCIgc3R5bGU9ImJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjAwIiB2ZXJzaW9uPSIxLjEiDQoJeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSINCgl4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjYwcHgiIGhlaWdodD0iNjBweCINCj4NCgk8ZyBpZD0iTGF5ZXIlMjAxIj4NCgkJPHBhdGggaWQ9IkVsbGlwc2UiIG9wYWNpdHk9IjAuNTAyIiBkPSJNIDAgMzAgQyAwIDEzLjQzMTMgMTMuNDMxMiAwIDMwIDAgQyA0Ni41Njg4IDAgNjAgMTMuNDMxMyA2MCAzMCBDIDYwIDQ2LjU2ODcgNDYuNTY4OCA2MCAzMCA2MCBDIDEzLjQzMTIgNjAgMCA0Ni41Njg3IDAgMzAgWiIgZmlsbD0iIzQ0NDQ0NCIvPg0KCQk8cGF0aCBkPSJNIDE3Ljk2ODggMjcgTCAzMCA0Mi41IEwgNDIuMDE1NiAyNyBMIDQyLjE0MDYgMjYuODQzOCAiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+DQoJCTxwYXRoIGlkPSJMaW5lIiBkPSJNIDMwIDQwLjUgTCAzMCAxNi41ICIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiLz4NCgk8L2c+DQo8L3N2Zz4="/>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--Made the schedule always appear - took out the ng-ig="currentShows.length > 0"-->
+    <div class="schedule">
+        <div class="container flex flex-column">
+            <div class="col-md-12">
+                <h1 class="title">Schedule</h1>
+            </div>
+            <div class="flex-one schedule-container">
+                <div class="col-md-6 col-sm-6 col-xs-6 next">
+                    <div class="head">
+                        <h4>Up Next</h4>
+                    </div>
+                    <img src="{{nextShow.img_src || './img/album-error.png'}}"/>
+                    <h2>{{nextShow.title}}</h2>
+                    <h4 class="accent">{{nextShow.start | timeFilter}} - {{nextShow.end | timeFilter}}</h4>
+                    <h4>{{nextShow.hosts}}</h4>
+                    <p>{{nextShow.description}}</p>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 sched">
+                    <div class="flex space-between head">
+                        <img ng-click="subDay()" alt="Left Arrow" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIEZpcmV3b3JrcyAxMCwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DQo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPg0KPHN2ZyBpZD0iVW50aXRsZWQtUGFnZSUyMDEiIHZpZXdCb3g9IjAgMCAxOCAyNyIgc3R5bGU9ImJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjAwIiB2ZXJzaW9uPSIxLjEiDQoJeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSINCgl4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjE4cHgiIGhlaWdodD0iMjdweCINCj4NCgk8ZyBpZD0iTGF5ZXIlMjAxIj4NCgkJPHBhdGggZD0iTSAxNi41IDEuOTIwOSBMIDEgMTMuOTA2IEwgMTYuNSAyNS44NzU1IEwgMTYuNjU2MyAyNiAiIHN0cm9rZT0iIzliOWI5YiIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+DQoJPC9nPg0KPC9zdmc+" />
+                        <div class="days flex space-between">
+                            <h4 ng-click="selectDay(1)" ng-class="{'selected': dayIndex == 1 }">Mon</h4>
+                            <h4 ng-click="selectDay(2)" ng-class="{'selected': dayIndex == 2 }">Tue</h4>
+                            <h4 ng-click="selectDay(3)" ng-class="{'selected': dayIndex == 3 }">Wed</h4>
+                            <h4 ng-click="selectDay(4)" ng-class="{'selected': dayIndex == 4 }">Thu</h4>
+                            <h4 ng-click="selectDay(5)" ng-class="{'selected': dayIndex == 5 }">Fri</h4>
+                            <h4 ng-click="selectDay(6)" ng-class="{'selected': dayIndex == 6 }">Sat</h4>
+                            <h4 ng-click="selectDay(7)" ng-class="{'selected': dayIndex == 7 }">Sun</h4>
+                        </div>
+                        <img ng-click="addDay()"  alt="Right Arrow" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIEZpcmV3b3JrcyAxMCwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DQo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPg0KPHN2ZyBpZD0iVW50aXRsZWQtUGFnZSUyMDEiIHZpZXdCb3g9IjAgMCAxOCAyNyIgc3R5bGU9ImJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjAwIiB2ZXJzaW9uPSIxLjEiDQoJeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSINCgl4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjE4cHgiIGhlaWdodD0iMjdweCINCj4NCgk8ZyBpZD0iTGF5ZXIlMjAxIj4NCgkJPHBhdGggZD0iTSAxLjUgMjUuMDc5MSBMIDE3IDEzLjA5NCBMIDEuNSAxLjEyNDUgTCAxLjM0MzggMSAiIHN0cm9rZT0iIzliOWI5YiIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+DQoJPC9nPg0KPC9zdmc+" />
+                    </div>
+                    <div class="list">
+                        <div ng-repeat="s in currentShows | orderBy: 'start'" class="item flex center-vertical">
+                            <img src="{{s.img_src || './img/album-error.png'}}"/>
+                            <div class="flex flex-column flex-one space-between">
+                                <h4>{{s.title}}</h4>
+                                <h5 class="accent">{{s.start | timeFilter}} - {{s.end | timeFilter}}</h5>
+                                <h5>{{s.hosts}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="announcements auto-size">
+        <carousel id="myCarousel" interval="myInterval">
+            <slide class="container" ng-repeat="slide in slides">
+                <div class="flex center">
+                    <img src="{{slide.attributes.img_src}}"/>
+                </div>
+            </slide>
+            <!--
+            TODO: Add links for facebook and twitter-->
+            <slide>
+                <div class="container social flex center">
+                    <div>
+                        <div class="col-md-12 col-xs-12">
+                            <div class="connected">
+                                <h1>Get Connected</h1>
+                                <h4>Stay up-to-date with us by following our social media pages. Get information on music, entertainment, and giveaways. Facebook: Whitworth.FM, Twitter: @WhitworthFM, Instagram: @whitworthfm. Check out our latest instagram and click the icon to follow us!</h4>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="col-md-4 col-xs-4 flex flex-column center-vertical">
+                                <img src="./img/carousel/facebook500.png" class="img-responsive" style="margin:auto;">
+                                <h4>/WhitworthFM</h4>
+                            </div>
+
+                            <div class="col-md-4 col-xs-4 flex flex-column center-vertical relative ng-binding">https://instagram.com/p/1izsDQnQKL/
+                                <img src="{{instaHeroImage}}" class="img-responsive shadow" style="margin:auto;">
+                                <div class="insta">
+                                    <a target="_blank" class="icon" href="{{instaData.link}}">
+                                        <img src="http://d36xtkk24g8jdx.cloudfront.net/bluebar/c296748/thirdparty/images/badges/ig-badge-48.png">
+                                    </a>
+                                </div>
+
+                                <h4>@WhitworthFM</h4>
+                            </div>
+
+                            <div class="col-md-4 col-xs-4 flex flex-column center-vertical">
+                                <img src="./img/carousel/twitter.png" class="img-responsive" style="margin:auto;">
+                                <h4>@WhitworthFM</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </slide>
+
+        </carousel>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-6">
+
+            </div>
+        </div>
+    </div>
+</div>

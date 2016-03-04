@@ -1,0 +1,83 @@
+<div>
+
+    <button ng-click="openModal('scheduleModal')" type="button" class="btn btn-success">Add Schedule Item</button>
+
+    <div class="schedule">
+        <div>
+            <h2>Monday</h2>
+            <div class="list">
+                <div ng-click="editShow(item.id)" ng-repeat="item in Monday | orderBy: 'start' track by item.id" class="item">
+                    <h3>{{item.title}}</h3>
+                    <h4>{{item.start | timeFilter}} - {{item.end | timeFilter}}</h4>
+                    <h4>{{item.hosts}}</h4>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2>Tuesday</h2>
+            <div class="list">
+                <div ng-click="editShow(item.id)" ng-repeat="item in Tuesday | orderBy: 'start' track by item.id" class="item">
+                    <h3>{{item.title}}</h3>
+                    <h4>{{item.start | timeFilter}} - {{item.end | timeFilter}}</h4>
+                    <h4>{{item.hosts}}</h4>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2>Wednesday</h2>
+            <div class="list">
+                <div ng-click="editShow(item.id)" ng-repeat="item in Wednesday | orderBy: 'start' track by item.id" class="item">
+                    <h3>{{item.title}}</h3>
+                    <h4>{{item.start | timeFilter}} - {{item.end | timeFilter}}</h4>
+                    <h4>{{item.hosts}}</h4>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2>Thursday</h2>
+            <div class="list">
+                <div ng-click="editShow(item.id)" ng-repeat="item in Thursday | orderBy: 'start' track by item.id" class="item">
+                    <h3>{{item.title}}</h3>
+                    <h4>{{item.start | timeFilter}} - {{item.end | timeFilter}}</h4>
+                    <h4>{{item.hosts}}</h4>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2>Friday</h2>
+            <div class="list">
+                <div ng-click="editShow(item.id)" ng-repeat="item in Friday | orderBy: 'start' track by item.id" class="item">
+                    <h3>{{item.title}}</h3>
+                    <h4>{{item.start | timeFilter}} - {{item.end | timeFilter}}</h4>
+                    <h4>{{item.hosts}}</h4>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2>Saturday</h2>
+            <div class="list">
+                <div ng-click="editShow(item.id)" ng-repeat="item in Saturday | orderBy: 'start' track by item.id" class="item">
+                    <h3>{{item.title}}</h3>
+                    <h4>{{item.start | timeFilter}} - {{item.end | timeFilter}}</h4>
+                    <h4>{{item.hosts}}</h4>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2>Sunday</h2>
+            <div class="list">
+                <div ng-click="editShow(item.id)" ng-repeat="item in Sunday | orderBy: 'start' track by item.id" class="item">
+                    <h3>{{item.title}}</h3>
+                    <h4>{{item.start | timeFilter}} - {{item.end | timeFilter}}</h4>
+                    <h4>{{item.hosts}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

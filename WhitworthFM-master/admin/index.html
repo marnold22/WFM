@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="admin">
+<head lang="en">
+    <base href="/admin">
+    <meta charset="UTF-8">
+    <title>Admin | Whitworth.FM</title>
+
+    <link href="../admin/css/normalize.css" rel="stylesheet"/>
+    <link href="../css/bootstrap.css" rel="stylesheet"/>
+    <link href="../css/bootstrap-theme.css" rel="stylesheet"/>
+
+    <link href="../admin/css/admin.css" rel="stylesheet"/>
+
+</head>
+<body ng-controller="ShellController">
+
+
+    <div class="container-fluid">
+        <div class="navbar" ng-hide="checkPage('login')">
+            <img class="logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjMsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHdpZHRoPSI1NS41MTNweCIgaGVpZ2h0PSI5MHB4IiB2aWV3Qm94PSIwIDAgNTUuNTEzIDkwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1NS41MTMgOTAiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGcgaWQ9IkxheWVyXzEiPg0KCTxwb2x5Z29uIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBmaWxsPSIjODI2MzRCIiBwb2ludHM9IjguMTI0LDkwLjEzNSA5LjA0LDgxLjc3MiAwLjc5Nyw4MS4wNTUgMCw5MC4xMzUgCSIvPg0KCTxwb2x5Z29uIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBmaWxsPSIjODI2MzRCIiBwb2ludHM9IjQ2LjgzMiw4NC45MzggNDYuODMyLDkwLjEzNSA1NC42NzcsOTAuMTM1IA0KCQk1NC42NzcsODQuMDAyIAkiLz4NCgk8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZmlsbD0iI0ZGRkZGRiIgZD0iTTI5LjEzOCwyMC45NmMwLDEuMDkyLTAuMzc3LDEuOTc2LTAuODQyLDEuOTc2aC03LjE0NA0KCQljLTAuNDY1LDAtMC44NDEtMC44ODQtMC44NDEtMS45NzZsMCwwYzAtMS4wOSwwLjM3Ni0xLjk3NCwwLjg0MS0xLjk3NGg3LjE0NEMyOC43NjEsMTguOTg2LDI5LjEzOCwxOS44NywyOS4xMzgsMjAuOTYNCgkJTDI5LjEzOCwyMC45NnoiLz4NCgk8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZmlsbD0iI0ZGRkZGRiIgZD0iTTQ2LjE1NCwyMC45NmMwLDEuMDkyLTAuMjM1LDEuOTc2LTAuNTI2LDEuOTc2aC00LjQ2NQ0KCQljLTAuMjkxLDAtMC41MjYtMC44ODQtMC41MjYtMS45NzZsMCwwYzAtMS4wOSwwLjIzNS0xLjk3NCwwLjUyNi0xLjk3NGg0LjQ2NUM0NS45MTksMTguOTg2LDQ2LjE1NCwxOS44Nyw0Ni4xNTQsMjAuOTYNCgkJTDQ2LjE1NCwyMC45NnoiLz4NCgk8ZWxsaXBzZSBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZmlsbD0iI0ZGRkZGRiIgY3g9IjEzLjY2MSIgY3k9IjIwLjQ2OCIgcng9IjMuNzE3IiByeT0iMy4zOTYiLz4NCgk8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMxNjVGNzUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNMTMuOTgsMjAuNDk2Ii8+DQoJPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiNCN0EzOEIiIGQ9Ik01MS4xNDksNDIuNjIzYzAsNS41NzUsMCw1LjU3NS01LjU3NSw1LjU3NUgxMS44OQ0KCQljLTUuNTc1LDAtNS41NzUsMC01LjU3NS01LjU3NVYyNi4xODhjMC01LjU3NSwwLTUuNTc1LDUuNTc1LTUuNTc1aDMzLjY4NGM1LjU3NSwwLDUuNTc1LDAsNS41NzUsNS41NzVWNDIuNjIzeiIvPg0KCTxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBmaWxsPSIjODI2MzRCIiBkPSJNMjEuMDY2LDUwLjI3MWMwLDAtMC40NzgsNC42NC00LjE0Nyw1Ljk1N2wxMC43MjIsMy4wNTENCgkJbDExLjg0NC0yLjcxNWMwLDAtNS4wMTgtMi4yOS01LjIzNi02LjI5M0gyMS4wNjZ6Ii8+DQoJPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiNGMDRGNTAiIGQ9Ik0xNi45MTksNTYuMjI5YzAsMCw2Ljg5NiwyLjAwOCwxMS4yMTYsMS45NDkNCgkJYzMuNzY5LTAuMDU0LDExLjM1LTEuNjEzLDExLjM1LTEuNjEzczguODE3LDMuMDY0LDExLjQ2OSw0LjY1OWMwLjYxOCwwLjM3MiwxLjg0NiwxLjIyOSwyLjIxLDEuODUyDQoJCWMwLjU3NSwwLjk4MSwwLjk3OSwzLjI4NywxLjA3NSw0LjQyYzEuMDI3LDEyLjE2NiwxLjI3NCwxNi40MjcsMS4yNzQsMTYuNDI3cy0xLjcxMywwLjc5Ny0zLjQyNSwxLjAxNg0KCQljLTEuMzAzLDAuMTY3LTUuMjU2LDAtNS4yNTYsMGwtMC40NzgsNS4xOTdIOS4zOThMOC44NDEsODIuMTNjMCwwLTEuODcyLDAuNTItNC4yMDgsMC41MkMyLjMxLDgyLjY0OSwwLDgxLjQ1MywwLDgxLjQ1Mw0KCQlzMC44MTQtOC4xMDksMS4wNzUtMTAuODUyYzAuNDM4LTQuNiwxLjc3MS03LjM3NiwzLjQyNS05LjE3OWMxLjExOS0xLjIyMSw0LjU3OC0yLjMxNSw2LjEzMi0yLjg4Nw0KCQlDMTIuMjYxLDU3LjkzOCwxNi45MTksNTYuMjI5LDE2LjkxOSw1Ni4yMjl6Ii8+DQoJPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNMTMuOTgsMjguMjc4DQoJCWMwLDEuMjgzLTEuMDQsMi4zMjMtMi4zMjMsMi4zMjNzLTIuMzIzLTEuMDQtMi4zMjMtMi4zMjNzMS4wMzktMi4zMjMsMi4zMjMtMi4zMjNTMTMuOTgsMjYuOTk1LDEzLjk4LDI4LjI3OHogTTExLjY1NywzMy44NTQNCgkJYy0xLjI4NCwwLTIuMzIzLDEuMDM5LTIuMzIzLDIuMzIzYzAsMS4yODMsMS4wMzksMi4zMjMsMi4zMjMsMi4zMjNzMi4zMjMtMS4wNCwyLjMyMy0yLjMyMw0KCQlDMTMuOTgsMzQuODkzLDEyLjk0MSwzMy44NTQsMTEuNjU3LDMzLjg1NHoiLz4NCgk8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZmlsbD0iI0ZGRkZGRiIgZD0iTTE0LjQ0NSw0My4zNDljMCwwLjUyOS0wLjQyOSwwLjk1OS0wLjk1OSwwLjk1OUg5LjgyOA0KCQljLTAuNTI5LDAtMC45NTktMC40My0wLjk1OS0wLjk1OWwwLDBjMC0wLjUyOCwwLjQzLTAuOTU4LDAuOTU5LTAuOTU4aDMuNjU4QzE0LjAxNiw0Mi4zOTEsMTQuNDQ1LDQyLjgyLDE0LjQ0NSw0My4zNDkNCgkJTDE0LjQ0NSw0My4zNDl6Ii8+DQoJPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiNGRkZGRkYiIGQ9Ik00Ny4zNzQsMjQuNTAzYzAsMC4zNTQtMC4yODYsMC42NC0wLjYzOSwwLjY0SDE3LjgxMw0KCQljLTAuMzUzLDAtMC42MzktMC4yODYtMC42MzktMC42NGwwLDBjMC0wLjM1MiwwLjI4Ni0wLjYzOSwwLjYzOS0wLjYzOWgyOC45MjJDNDcuMDg4LDIzLjg2NCw0Ny4zNzQsMjQuMTUxLDQ3LjM3NCwyNC41MDMNCgkJTDQ3LjM3NCwyNC41MDN6Ii8+DQoJPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiNGRkZGRkYiIGQ9Ik00Ny4zNzQsMjcuNzU2YzAsMC4zNTMtMC4yODYsMC42MzktMC42MzksMC42MzlIMTcuODEzDQoJCWMtMC4zNTMsMC0wLjYzOS0wLjI4Ni0wLjYzOS0wLjYzOWwwLDBjMC0wLjM1MywwLjI4Ni0wLjYzOSwwLjYzOS0wLjYzOWgyOC45MjJDNDcuMDg4LDI3LjExNyw0Ny4zNzQsMjcuNDAzLDQ3LjM3NCwyNy43NTYNCgkJTDQ3LjM3NCwyNy43NTZ6Ii8+DQoJPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiNGRkZGRkYiIGQ9Ik00Ny4zNzQsMzEuMDA4YzAsMC4zNTMtMC4yODYsMC42MzktMC42MzksMC42MzlIMTcuODEzDQoJCWMtMC4zNTMsMC0wLjYzOS0wLjI4Ni0wLjYzOS0wLjYzOWwwLDBjMC0wLjM1MywwLjI4Ni0wLjYzOSwwLjYzOS0wLjYzOWgyOC45MjJDNDcuMDg4LDMwLjM2OSw0Ny4zNzQsMzAuNjU1LDQ3LjM3NCwzMS4wMDgNCgkJTDQ3LjM3NCwzMS4wMDh6Ii8+DQoJPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiNGRkZGRkYiIGQ9Ik00Ny4zNzQsMzQuMjZjMCwwLjM1My0wLjI4NiwwLjYzOS0wLjYzOSwwLjYzOUgxNy44MTMNCgkJYy0wLjM1MywwLTAuNjM5LTAuMjg2LTAuNjM5LTAuNjM5bDAsMGMwLTAuMzUzLDAuMjg2LTAuNjM5LDAuNjM5LTAuNjM5aDI4LjkyMkM0Ny4wODgsMzMuNjIxLDQ3LjM3NCwzMy45MDcsNDcuMzc0LDM0LjI2DQoJCUw0Ny4zNzQsMzQuMjZ6Ii8+DQoJPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiNGRkZGRkYiIGQ9Ik00Ny4zNzQsMzcuNTEyYzAsMC4zNTMtMC4yODYsMC42NC0wLjYzOSwwLjY0SDE3LjgxMw0KCQljLTAuMzUzLDAtMC42MzktMC4yODctMC42MzktMC42NGwwLDBjMC0wLjM1MywwLjI4Ni0wLjYzOSwwLjYzOS0wLjYzOWgyOC45MjJDNDcuMDg4LDM2Ljg3Myw0Ny4zNzQsMzcuMTU5LDQ3LjM3NCwzNy41MTINCgkJTDQ3LjM3NCwzNy41MTJ6Ii8+DQoJPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiNGRkZGRkYiIGQ9Ik00Ny4zNzQsNDAuNzY0YzAsMC4zNTQtMC4yODYsMC42NC0wLjYzOSwwLjY0SDE3LjgxMw0KCQljLTAuMzUzLDAtMC42MzktMC4yODYtMC42MzktMC42NGwwLDBjMC0wLjM1MywwLjI4Ni0wLjYzOSwwLjYzOS0wLjYzOWgyOC45MjJDNDcuMDg4LDQwLjEyNSw0Ny4zNzQsNDAuNDExLDQ3LjM3NCw0MC43NjQNCgkJTDQ3LjM3NCw0MC43NjR6Ii8+DQoJPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiNGRkZGRkYiIGQ9Ik00Ny4zNzQsNDQuMDE3YzAsMC4zNTMtMC4yODYsMC42MzktMC42MzksMC42MzlIMTcuODEzDQoJCWMtMC4zNTMsMC0wLjYzOS0wLjI4Ni0wLjYzOS0wLjYzOWwwLDBjMC0wLjM1MywwLjI4Ni0wLjYzOSwwLjYzOS0wLjYzOWgyOC45MjJDNDcuMDg4LDQzLjM3OCw0Ny4zNzQsNDMuNjY0LDQ3LjM3NCw0NC4wMTcNCgkJTDQ3LjM3NCw0NC4wMTd6Ii8+DQoJPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTI5LjA5OSwwLjY5YzAuMTE3LTAuMTQsMC4wOTktMC4zNS0wLjA0Mi0wLjQ2N2wwLDBjLTAuMTQtMC4xMTgtMC4zNS0wLjEtMC40NjcsMC4wNDFMMTIuODI2LDE5LjA3Mw0KCQljLTAuMTE3LDAuMTQxLTAuMDk5LDAuMzUsMC4wNDIsMC40NjhsMCwwYzAuMTQxLDAuMTE3LDAuMzUsMC4wOTksMC40NjgtMC4wNDFMMjkuMDk5LDAuNjl6Ii8+DQoJPGc+DQoJCTxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0xNS40NTIsNzEuOTY3aC0wLjcyM3YtMS4xODJoMy4wNzF2MS4xODJoLTAuOTAzbDAuODksMi45ODhsMS4zMi00LjE3aDEuMzYybDEuMzM0LDQuMTg1bDAuODc2LTMuMDAzDQoJCQloLTAuOTAzdi0xLjE4MmgyLjk4OHYxLjE4MmgtMC43OTJsLTEuNTAxLDQuODIyaC0xLjM2MmwtMS4zNzYtMy44OWwtMS4yNzksMy44OWgtMS4zNzZMMTUuNDUyLDcxLjk2N3oiLz4NCgkJPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTIzLjc5Miw3NS45N2MwLTAuNTI4LDAuNDMxLTAuOTU5LDAuOTU5LTAuOTU5czAuOTU5LDAuNDMxLDAuOTU5LDAuOTU5cy0wLjQzMSwwLjk1OS0wLjk1OSwwLjk1OQ0KCQkJUzIzLjc5Miw3Ni40OTgsMjMuNzkyLDc1Ljk3eiIvPg0KCQk8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMjYuODA4LDc1LjU2NmgwLjk4N3YtMy41NDRoLTEuMTU0di0xLjIzN2gxLjE1NHYtMS43NjVjMC0xLjY1NCwxLjA0Mi0yLjIxLDIuMjkzLTIuMjENCgkJCWMwLjM5LDAsMC43NzgsMC4wNTcsMS4xNjcsMC4xMjV2MS4xNTRjLTAuMjM1LTAuMDQyLTAuNTI3LTAuMDctMC43NjQtMC4wN2MtMC41OTgsMC0xLjEyNiwwLjE2Ny0xLjEyNiwxLjAyOXYxLjczNmgxLjQ4N3YxLjIzNw0KCQkJaC0xLjQ4N3YzLjU0NGgxLjIwOXYxLjIyM2gtMy43NjdWNzUuNTY2eiIvPg0KCQk8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMzEuNjg2LDc1LjU4aDAuODA3di0zLjU4NmgtMC44MDd2LTEuMjA5aDIuMjUydjAuNjk1YzAuNTI4LTAuNDczLDEuMTU0LTAuODQ4LDEuOTg3LTAuODQ4DQoJCQljMC43MzcsMCwxLjI3OSwwLjI5MSwxLjUyOSwwLjkwM2MwLjU1Ni0wLjQ4NiwxLjE4MS0wLjkwMywyLjA1Ny0wLjkwM2MxLjA0MywwLDEuNjk2LDAuNTk4LDEuNjk2LDEuODM0djMuMTEzaDAuODE5djEuMjA5aC0zLjE4Mw0KCQkJVjc1LjU4aDAuODJ2LTMuMDE2YzAtMC41LTAuMTgxLTAuNzM1LTAuNjk1LTAuNzM1Yy0wLjQ4NiwwLTAuOTE3LDAuMjA4LTEuMzQ4LDAuNTU1djMuMTk2aDAuODJ2MS4yMDloLTMuMTgzVjc1LjU4aDAuODJ2LTMuMDE2DQoJCQljMC0wLjUtMC4xODItMC43MzUtMC42OTUtMC43MzVjLTAuNDg2LDAtMC45MDMsMC4yMjEtMS4zNDgsMC41ODN2My4xNjhoMC44MnYxLjIwOWgtMy4xNjlWNzUuNTh6Ii8+DQoJPC9nPg0KPC9nPg0KPGcgaWQ9IkxheWVyXzMiPg0KPC9nPg0KPGcgaWQ9IkxheWVyXzYiPg0KPC9nPg0KPGcgaWQ9IkxheWVyXzIiPg0KPC9nPg0KPGcgaWQ9IkxheWVyXzUiPg0KPC9nPg0KPC9zdmc+DQo=">
+
+            <ul class="nav nav-pills">
+                <li ng-class="{'active': checkPage('schedule')}" role="presentation"><a href="/wfm-admin/schedule">Schedule</a></li>
+                <li ng-class="{'active': checkPage('announcements')}" role="presentation"><a href="/wfm-admin/announcements">Announcements</a></li>
+                <li ng-class="{'active': checkPage('albums')}"  role="presentation"><a href="/wfm-admin/reviews">Album Reviews</a></li>
+            </ul>
+        </div>
+
+        <ng-view></ng-view>
+
+    </div>
+
+    <div class="toasts">
+        <div ng-repeat="toast in toasts track by $index" class="alert alert-{{toast.type}} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{::toast.message}}
+        </div>
+    </div>
+
+
+    <schedule-modal></schedule-modal>
+    <announcement-modal></announcement-modal>
+
+    <script src="../js/parse-1.3.3.min.js"></script>
+    <script src="../js/jquery-1.11.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/angular.min.js"></script>
+    <script src="../js/angular-resource.js"></script>
+    <script src="../js/angular-route.js"></script>
+    <script src="../js/angular-sanitize.min.js"></script>
+    <script src="../js/underscore-min.js"></script>
+
+    <script type="text/javascript">
+        Parse.initialize("OL1fnKr8neaSiLnD6nQMhQ72pcS3c43wNPUxqwLW", "gvVctn8xKwwbWEVTXN75V8HTUHlT7kS5whSwxc4h");
+    </script>
+
+    <script src="../admin/app.js"></script>
+    <script src="../admin/js/controllers/ShellController.js"></script>
+    <script src="../admin/js/controllers/ScheduleController.js"></script>
+    <script src="../admin/js/controllers/LoginController.js"></script>
+    <script src="../admin/js/controllers/AnnouncementsController.js"></script>
+
+    <script src="../admin/js/directives/scheduleModal.js"></script>
+    <script src="../admin/js/directives/announcementModal.js"></script>
+
+    <script src="../admin/js/directives/timePicker.js"></script>
+
+    <script src="../admin/js/filters/dayFilter.js"></script>
+    <script src="../admin/js/filters/timeFilter.js"></script>
+
+</body>
+</html>

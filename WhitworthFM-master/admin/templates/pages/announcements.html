@@ -1,0 +1,11 @@
+<div class="announcements">
+
+    <button ng-click="openModal('announcementModal')" type="button" class="btn btn-success">Add Announcement</button>
+
+    <div class="list">
+        <div class="item" ng-repeat="item in Announcements" ng-click="editAnnouncement(item.id)">
+            <img src="{{item.attributes.img_src}}">
+        </div>
+    </div>
+
+</div>

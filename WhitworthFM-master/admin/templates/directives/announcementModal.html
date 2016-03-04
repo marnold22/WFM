@@ -1,0 +1,25 @@
+<div id="announcementModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{state}} Announcement</h4>
+            </div>
+            <div class="modal-body">
+                <form name="announcementForm">
+                    <p>For best results, use an image of the size: 1500px X 1000px.</p>
+                    <div class="form-group">
+                        <label>Image Source: </label>
+                        <input required ng-model="announcement.img_src" type="url" class="form-control" placeholder="Image Source"/>
+                        <img src="{{announcement.img_src}}"/>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button ng-click="deleteAnnouncement(announcement)" ng-show="state == 'Edit'" type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button ng-click="saveAnnouncement(announcement)" type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
