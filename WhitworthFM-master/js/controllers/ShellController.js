@@ -88,7 +88,7 @@ whitworthFM.controller('ShellController',
             if (title === 'Streaming Unavailable') {
                 $scope.currentSong.title = title;
             }
-
+                //doesnt work because this service requires an additional fee that radio isn't currently paying
             if (!title || title == 'N/A') {
                 $scope.currentSong.title = 'Live Show';
                 return;

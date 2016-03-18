@@ -4,8 +4,8 @@
             <div class="title row-fluid">
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="status">
-                        <img class="hidden-xs" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIEZpcmV3b3JrcyAxMCwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DQo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPg0KPHN2ZyBpZD0iVW50aXRsZWQtUGFnZSUyMDEiIHZpZXdCb3g9IjAgMCAxOCAyMiIgc3R5bGU9ImJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjAwIiB2ZXJzaW9uPSIxLjEiDQoJeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSINCgl4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjE4cHgiIGhlaWdodD0iMjJweCINCj4NCgk8ZyBpZD0iTGF5ZXIlMjAxIj4NCgkJPHBhdGggZD0iTSAwIDAgTCAxOCAxMS4xNjY3IEwgMCAyMiBMIDAgMCBaIiBmaWxsPSIjNDQ0NDQ0Ii8+DQoJPC9nPg0KPC9zdmc+"/>
-                        <h2 id="now-playing" class="playing hidden-xs">Now Playing</h2>
+                        <!--<img class="hidden-xs" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIEZpcmV3b3JrcyAxMCwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DQo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPg0KPHN2ZyBpZD0iVW50aXRsZWQtUGFnZSUyMDEiIHZpZXdCb3g9IjAgMCAxOCAyMiIgc3R5bGU9ImJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjAwIiB2ZXJzaW9uPSIxLjEiDQoJeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSINCgl4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjE4cHgiIGhlaWdodD0iMjJweCINCj4NCgk8ZyBpZD0iTGF5ZXIlMjAxIj4NCgkJPHBhdGggZD0iTSAwIDAgTCAxOCAxMS4xNjY3IEwgMCAyMiBMIDAgMCBaIiBmaWxsPSIjNDQ0NDQ0Ii8+DQoJPC9nPg0KPC9zdmc+"/>-->
+                        <h2 id="now-playing" class="playing hidden-xs" class="playButton" >Now Playing! </h2>
                     </div>
                     <div class="volume-container">
                         <div class="volume" ui-slider min="0" max="100" ng-model="homeVolume"></div>
@@ -119,11 +119,13 @@
 
                         <div class="col-md-12">
                             <div class="col-md-4 col-xs-4 flex flex-column center-vertical">
+                                <a href="http://www.facebook.com/whitworthfm/">
                                 <img src="./img/carousel/facebook500.png" class="img-responsive" style="margin:auto;">
                                 <h4>/WhitworthFM</h4>
                             </div>
 
-                            <div class="col-md-4 col-xs-4 flex flex-column center-vertical relative ng-binding">https://instagram.com/p/1izsDQnQKL/
+                            <div class="col-md-4 col-xs-4 flex flex-column center-vertical relative ng-binding">
+                                <a href="https://instagram.com/p/1izsDQnQKL/">
                                 <img src="{{instaHeroImage}}" class="img-responsive shadow" style="margin:auto;">
                                 <div class="insta">
                                     <a target="_blank" class="icon" href="{{instaData.link}}">
@@ -135,6 +137,7 @@
                             </div>
 
                             <div class="col-md-4 col-xs-4 flex flex-column center-vertical">
+                                <a href="http://www.twitter.com/whitworthfm/">
                                 <img src="./img/carousel/twitter.png" class="img-responsive" style="margin:auto;">
                                 <h4>@WhitworthFM</h4>
                             </div>
